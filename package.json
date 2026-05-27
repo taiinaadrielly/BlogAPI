@@ -1,14 +1,21 @@
 {
   "name": "blogapi",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "API de um blog básico",
+  "main": "server.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "tsx watch src/server.ts"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "blog",
+    "api",
+    "express",
+    "typescript",
+    "prisma",
+    "node'"
+  ],
+  "author": "Tainá Adrielly Martins Marcelo",
+  "license": "MIT",
   "type": "commonjs",
   "devDependencies": {
     "@types/cors": "^2.8.19",
@@ -22,6 +29,7 @@
     "typescript": "^6.0.3"
   },
   "dependencies": {
+    "@prisma/client": "^6.19.3",
     "bcryptjs": "^3.0.3",
     "body-parser": "^2.2.2",
     "cors": "^2.8.6",
