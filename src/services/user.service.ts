@@ -7,14 +7,19 @@ type CreateUserProps = {
     password: string
 }
 
-export const createUser = async ({ name, email, password }: CreateUserProps ) => {
+type verifyUserProps = {
+    email: string
+    password: string
+}
+
+export const createUser = async ({ name, email, password }: CreateUserProps) => {
     email = email.toLowerCase()
 
     const user = await prisma.user.findFirst({
         where: { email }
     })
 
-    if(user) return false
+    if (user) return false
 
     const hashedPassword = await bcrypt.hash(password, 10)
 
@@ -22,7 +27,20 @@ export const createUser = async ({ name, email, password }: CreateUserProps ) =>
         data: {
             name,
             email,
-            password: hashedPassword 
+            password: hashedPassword
         }
     })
+}
+
+export const verifyUser = async ({ email, password }: VerifyUserProps) => {
+    email = email.toLowerCase()
+
+    const user = await prisma.user.findFirst({
+        where: { email }
+    })
+    if (!user) return false
+    const isMatch = await bcrypt.compareSync(password, user.password)
+    if (!isMatch) return false
+
+    return user
 }
