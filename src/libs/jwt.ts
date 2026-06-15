@@ -6,3 +6,11 @@ export const createJWT = (payload: any) => {
         process.env.JWT_SECRET_KEY as string
     )
 }
+
+export const verifyJWT = (token: string) => {
+    try {
+        return jwt.verify(token, process.env.JWT_SECRET_KEY as string)
+    } catch (error) {
+        return false
+    }
+}
