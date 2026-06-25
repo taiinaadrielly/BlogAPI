@@ -13,5 +13,4 @@ export const privateRoute = async (
 	}
 	req.user = user
 	next()
-	
 }
